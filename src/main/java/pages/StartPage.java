@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class StartPage extends BasePage{
+    public StartPage(WebDriver driver){
+        super(driver);
+    }
     @FindBy(css = "a.button")
     private WebElement enterButton;
 
@@ -14,8 +17,7 @@ public class StartPage extends BasePage{
     public void clickOnEnterButton(){
         enterButton.click();
     }
-
-    public StartPage(WebDriver driver){
-        super(driver);
+    public void open(){
+        driver.get("http://www.money.yandex.ru");
     }
 }

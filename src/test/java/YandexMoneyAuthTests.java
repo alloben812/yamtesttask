@@ -1,27 +1,12 @@
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.MainPage;
-import pages.PassportPage;
-import pages.StartPage;
+import utils.TestBase;
 
-import java.util.concurrent.TimeUnit;
-
-public class YandexMoneyAuthTests {
-    private static WebDriver driver = new ChromeDriver();
-    private StartPage startPage = new StartPage(driver);
-    private PassportPage passportPage = new PassportPage(driver);
-    private MainPage mainPage = new MainPage(driver);
-
+public class YandexMoneyAuthTests extends TestBase {
     @Test
     public void testLoginYamoney(){
-        driver.get("http://www.money.yandex.ru");
-        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+        startPage.open();
         startPage.clickOnEnterButton();
         passportPage.fillLoginField("nazarenko.aristey");
         passportPage.fillPasswdField("DerParol777333");
@@ -35,11 +20,7 @@ public class YandexMoneyAuthTests {
     public void testLogout(){
         mainPage.clickOnUserName();
         mainPage.clickOnLogout();
-        (new WebDriverWait(driver,4)).until(ExpectedConditions.textToBePresentInElement(startPage.getEnterButton(),"Log in"));
-    }
-
-    @AfterClass
-    public static void tearDown(){
-        driver.quit();
+        if(!waitWhenTextVisibleInTheWebElement(startPage.getEnterButton(),"Войти"))
+            System.out.println("Что-то пошло не так и мы не дождались здесь нужного текста в элементе");
     }
 }
