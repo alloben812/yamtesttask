@@ -3,9 +3,10 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.WebDriverSingleton;
 
 public class PassportPage extends BasePage{
-    public PassportPage(WebDriver driver){
+    public PassportPage(WebDriverSingleton driver){
         super(driver);
     }
 

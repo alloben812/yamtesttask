@@ -1,14 +1,16 @@
 package pages;
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.WebDriverSingleton;
 
 
 import java.util.concurrent.TimeUnit;
 
 public class MainPage extends BasePage{
-    public MainPage(WebDriver driver){
+    public MainPage(WebDriverSingleton driver){
         super(driver);
     }
 
@@ -26,7 +28,7 @@ public class MainPage extends BasePage{
     }
 
     public void clickOnUserName(){
-        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+        driver.getDriver().manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
         userName.click();
     }
 

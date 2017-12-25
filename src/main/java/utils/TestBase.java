@@ -3,7 +3,6 @@ package utils;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -14,15 +13,13 @@ import pages.StartPage;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
-    protected static WebDriver driver;
+
     protected static StartPage startPage;
     protected static PassportPage passportPage;
     protected static MainPage mainPage;
-
     @BeforeClass
-    public static void initWebdriver() {
-        driver = WebDriverSingleton.getWebDriverInstance();
-        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+    public static void initWebdriver(WebDriverSingleton driver) {
+        driver.getDriver().manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
     }
 
     @BeforeClass
@@ -33,7 +30,7 @@ public class TestBase {
     }
 
     protected Boolean waitWhenTextVisibleInTheWebElement(WebElement element, String text) {
-        return (new WebDriverWait(driver, 4)).until(ExpectedConditions.textToBePresentInElement(element, text));
+        return (new WebDriverWait(driver.getDriver(), 4)).until(ExpectedConditions.textToBePresentInElement(element, text));
     }
 
     protected void checkTextInWebElement(WebElement element, String text){

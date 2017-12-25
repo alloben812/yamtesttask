@@ -3,10 +3,11 @@ package pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import utils.TestBase;
+
+import utils.WebDriverSingleton;
 
 public class StartPage extends BasePage{
-    public StartPage(WebDriver driver){
+    public StartPage(WebDriverSingleton driver){
         super(driver);
     }
 
@@ -19,5 +20,5 @@ public class StartPage extends BasePage{
     public void clickOnEnterButton(){
         enterButton.click();
     }
-    public void open(){ driver.get("http://www.money.yandex.ru"); }
+    public void open(){ driver.getDriver().get("http://www.money.yandex.ru"); }
 }
