@@ -5,27 +5,25 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
+import pages.PassportPage;
+import pages.StartPage;
 
 import java.util.concurrent.TimeUnit;
 
 public class YandexMoneyAuthTests {
-    static WebDriver driver = new ChromeDriver();
+    private static WebDriver driver = new ChromeDriver();
+    private StartPage startPage = new StartPage(driver);
+    private PassportPage passportPage = new PassportPage(driver);
 
     @Test
-    public void testLoginYamoney(){
+    public void testSuccesfullLogin(){
         driver.get("http://www.money.yandex.ru");
         driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
-        WebElement enterButton = driver.findElement(By.cssSelector("a.button"));
-        enterButton.click();
-
-        WebElement login = driver.findElement(By.cssSelector("[name=login]"));
-        login.sendKeys("nazarenko.aristey");
-        WebElement password = driver.findElement(By.cssSelector("[name=passwd]"));
-        password.sendKeys("DerParol777333");
-
-        WebElement enterPassport = driver.findElement(By.cssSelector("[type=submit]"));
-        enterPassport.click();
-
+        startPage.clickOnEnterButton();
+        passportPage.fillLoginField("nazarenko.aristey");
+        passportPage.fillPasswdField("DerParol777333");
+        passportPage.clickSubmitButton();
         String userFirstLetter = driver.findElement(By.className("user__first-letter")).getText();
         System.out.println(userFirstLetter);
         Assert.assertEquals(userFirstLetter, "n");
