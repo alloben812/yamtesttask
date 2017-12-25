@@ -18,12 +18,17 @@ public class MainPage extends BasePage{
     @FindBy(css = ".popup__content .user__logout")
     private WebElement logout;
 
+    @FindBy(className = "user__first-letter")
+    private WebElement userFirstLetter;
+
+    public WebElement getUserFirstLetter() {
+        return userFirstLetter;
+    }
+
     public void clickOnUserName(){
+        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
         userName.click();
     }
 
-    public void clickOnLogout(){
-        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
-        logout.click();
-    }
+    public void clickOnLogout(){ logout.click(); }
 }

@@ -1,6 +1,7 @@
 package utils;
 
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -35,8 +36,16 @@ public class TestBase {
         return (new WebDriverWait(driver, 4)).until(ExpectedConditions.textToBePresentInElement(element, text));
     }
 
+    protected void checkTextInWebElement(WebElement element, String text){
+        if(!waitWhenTextVisibleInTheWebElement(element,text)){
+            //TODO: добавить логгинг иначе криво все!
+            System.out.println("Что пошло не так, и мы не нашли в элементе --ПОДУМАЙ КАК ЭТО СДЕЛАТЬ-- текста --И ЭТО ТОЖЕ--");
+            Assert False;
+        }
+    }
+
     @AfterClass
     public static void closeWebBrowser() {
-        driver.close();
+        WebDriverSingleton.closeWebBrowser();
     }
 }

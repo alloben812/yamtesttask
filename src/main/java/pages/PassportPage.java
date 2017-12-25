@@ -5,6 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class PassportPage extends BasePage{
+    public PassportPage(WebDriver driver){
+        super(driver);
+    }
+
     @FindBy(css = "[name=login]")
     private WebElement loginField;
     @FindBy(css = "[name=passwd]")
@@ -22,7 +26,4 @@ public class PassportPage extends BasePage{
         submitButton.click();
     }
 
-    public PassportPage(WebDriver driver){
-        super(driver);
-    }
 }
