@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class StartPage {
+public class StartPage extends BasePage{
     @FindBy(css = "a.button")
     private WebElement enterButton;
 
@@ -16,7 +16,8 @@ public class StartPage {
     public void clickOnEnterButton(){
         enterButton.click();
     }
+
     public StartPage(WebDriver driver){
-        PageFactory.initElements(driver, this);
+        super(driver);
     }
 }
