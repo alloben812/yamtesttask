@@ -14,6 +14,7 @@ public class YandexMoneyAuthTests extends TestBase {
 
     @Test
     public void testLogout(){
+        checkWebElementIsVisible(mainPage.getUserName());
         mainPage.clickOnUserName();
         mainPage.clickOnLogout();
         checkTextInWebElement(startPage.getEnterButton(),"Войти");

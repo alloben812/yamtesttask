@@ -1,13 +1,14 @@
 package pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import utils.WebDriverSingleton;
+
 
 public class BasePage {
-    protected WebDriverSingleton driver;
-    public BasePage(WebDriverSingleton driver){
+    protected WebDriver driver;
+    public BasePage(WebDriver driver){
         this.driver = driver;
-        PageFactory.initElements(driver.getWebDriverInstance(), this);
+        PageFactory.initElements(driver, this);
     }
 
 }

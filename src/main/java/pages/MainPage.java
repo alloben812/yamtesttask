@@ -10,7 +10,7 @@ import utils.WebDriverSingleton;
 import java.util.concurrent.TimeUnit;
 
 public class MainPage extends BasePage{
-    public MainPage(WebDriverSingleton driver){
+    public MainPage(WebDriver driver){
         super(driver);
     }
 
@@ -26,9 +26,12 @@ public class MainPage extends BasePage{
     public WebElement getUserFirstLetter() {
         return userFirstLetter;
     }
+    public WebElement getUserName(){
+        return userName;
+    }
 
     public void clickOnUserName(){
-        driver.getDriver().manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
         userName.click();
     }
 

@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import utils.WebDriverSingleton;
 
 public class StartPage extends BasePage{
-    public StartPage(WebDriverSingleton driver){
+    public StartPage(WebDriver driver){
         super(driver);
     }
 
@@ -20,5 +20,5 @@ public class StartPage extends BasePage{
     public void clickOnEnterButton(){
         enterButton.click();
     }
-    public void open(){ driver.getDriver().get("http://www.money.yandex.ru"); }
+    public void open(){ driver.get("http://www.money.yandex.ru"); }
 }

@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import utils.WebDriverSingleton;
 
 public class PassportPage extends BasePage{
-    public PassportPage(WebDriverSingleton driver){
+    public PassportPage(WebDriver driver){
         super(driver);
     }
 
