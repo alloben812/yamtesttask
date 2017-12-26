@@ -4,9 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static utils.Constants.LOGIN_FIELD;
-import static utils.Constants.PASSWORD_FIELD;
-import static utils.Constants.SUBMIT_BUTTON;
+import static utils.Constants.*;
 
 
 public class PassportPage extends BasePage{
@@ -20,10 +18,11 @@ public class PassportPage extends BasePage{
     private WebElement passwordField;
     @FindBy(css = SUBMIT_BUTTON)
     private WebElement submitButton;
+    @FindBy(css = INCORRECT_PASSWORD)
+    private WebElement incorrectPasswordIcon;
 
-    public void fillLoginField(String login) {
-        loginField.sendKeys(login);
-    }
+    public WebElement getIncorrectPasswordIcon() { return incorrectPasswordIcon; }
+    public void fillLoginField(String login) { loginField.sendKeys(login); }
     public void fillPasswdField(String passwd) {
         passwordField.sendKeys(passwd);
     }

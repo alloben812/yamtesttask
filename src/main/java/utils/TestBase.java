@@ -17,20 +17,27 @@ import static utils.Constants.TIMEOUT_EXPLICIT;
 import static utils.Constants.TIMEOUT_IMPLICIT;
 
 public class TestBase {
-    protected static WebDriver driver = WebDriverSingleton.getWebDriverInstance();;
+    protected static WebDriver driver = WebDriverSingleton.getWebDriverInstance();
     protected static StartPage startPage;
     protected static PassportPage passportPage;
     protected static MainPage mainPage;
-    @BeforeClass
+
     public static void initWebdriver() {
+        driver = WebDriverSingleton.getWebDriverInstance();
         driver.manage().timeouts().implicitlyWait(TIMEOUT_IMPLICIT, TimeUnit.SECONDS);
     }
 
-    @BeforeClass
+
     public static void initPages() {
         startPage = new StartPage(driver);
         passportPage = new PassportPage(driver);
         mainPage = new MainPage(driver);
+    }
+
+    @BeforeClass
+    public void init(){
+        initWebdriver();
+        initPages();
     }
 
     protected Boolean waitWhenTextVisibleInTheWebElement(WebElement element, String text) {
@@ -54,6 +61,14 @@ public class TestBase {
             System.out.println("Так и не увидили нужный элемент");
             Assert False;
         }
+    }
+
+    protected void login(String user, String password){
+        startPage.open();
+        startPage.clickOnEnterButton();
+        passportPage.fillLoginField(user);
+        passportPage.fillPasswdField(password);
+        passportPage.clickSubmitButton();
     }
 
     @AfterClass
