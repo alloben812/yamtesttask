@@ -4,8 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import utils.WebDriverSingleton;
-
 public class StartPage extends BasePage{
     public StartPage(WebDriver driver){
         super(driver);

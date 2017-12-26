@@ -14,19 +14,17 @@ import pages.StartPage;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
-    protected static WebDriver driver;
+    protected static WebDriver driver = WebDriverSingleton.getWebDriverInstance();;
     protected static StartPage startPage;
     protected static PassportPage passportPage;
     protected static MainPage mainPage;
     @BeforeClass
     public static void initWebdriver() {
-        driver = WebDriverSingleton.getWebDriverInstance();
         driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
     }
 
     @BeforeClass
     public static void initPages() {
-        driver = WebDriverSingleton.getWebDriverInstance();
         startPage = new StartPage(driver);
         passportPage = new PassportPage(driver);
         mainPage = new MainPage(driver);
@@ -36,8 +34,8 @@ public class TestBase {
         return (new WebDriverWait(driver, 15)).until(ExpectedConditions.textToBePresentInElement(element, text));
     }
 
-    protected WebElement waitElementIsVisible(WebElement element){
-        return (new WebDriverWait(driver, 15)).until(ExpectedConditions.visibilityOf(element));
+    protected Boolean waitElementIsVisible(WebElement element){
+        return (new WebDriverWait(driver, 15)).until(ExpectedConditions.visibilityOf(element))!=null;
     }
 
     protected void checkTextInWebElement(WebElement element, String text){
@@ -49,7 +47,7 @@ public class TestBase {
     }
 
     protected void checkWebElementIsVisible(WebElement element){
-        if(waitElementIsVisible(element) == null){
+        if(!waitElementIsVisible(element)){
             System.out.println("Так и не увидили нужный элемент");
             Assert False;
         }
