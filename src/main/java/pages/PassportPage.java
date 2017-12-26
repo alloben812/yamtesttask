@@ -4,17 +4,21 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static utils.Constants.LOGIN_FIELD;
+import static utils.Constants.PASSWORD_FIELD;
+import static utils.Constants.SUBMIT_BUTTON;
+
 
 public class PassportPage extends BasePage{
     public PassportPage(WebDriver driver){
         super(driver);
     }
 
-    @FindBy(css = "[name=login]")
+    @FindBy(css = LOGIN_FIELD)
     private WebElement loginField;
-    @FindBy(css = "[name=passwd]")
+    @FindBy(css = PASSWORD_FIELD)
     private WebElement passwordField;
-    @FindBy(css = "[type=submit]")
+    @FindBy(css = SUBMIT_BUTTON)
     private WebElement submitButton;
 
     public void fillLoginField(String login) {

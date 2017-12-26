@@ -13,6 +13,9 @@ import pages.StartPage;
 
 import java.util.concurrent.TimeUnit;
 
+import static utils.Constants.TIMEOUT_EXPLICIT;
+import static utils.Constants.TIMEOUT_IMPLICIT;
+
 public class TestBase {
     protected static WebDriver driver = WebDriverSingleton.getWebDriverInstance();;
     protected static StartPage startPage;
@@ -20,7 +23,7 @@ public class TestBase {
     protected static MainPage mainPage;
     @BeforeClass
     public static void initWebdriver() {
-        driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(TIMEOUT_IMPLICIT, TimeUnit.SECONDS);
     }
 
     @BeforeClass
@@ -31,11 +34,11 @@ public class TestBase {
     }
 
     protected Boolean waitWhenTextVisibleInTheWebElement(WebElement element, String text) {
-        return (new WebDriverWait(driver, 15)).until(ExpectedConditions.textToBePresentInElement(element, text));
+        return (new WebDriverWait(driver, TIMEOUT_EXPLICIT)).until(ExpectedConditions.textToBePresentInElement(element, text));
     }
 
     protected Boolean waitElementIsVisible(WebElement element){
-        return (new WebDriverWait(driver, 15)).until(ExpectedConditions.visibilityOf(element))!=null;
+        return (new WebDriverWait(driver, TIMEOUT_EXPLICIT)).until(ExpectedConditions.visibilityOf(element))!=null;
     }
 
     protected void checkTextInWebElement(WebElement element, String text){
